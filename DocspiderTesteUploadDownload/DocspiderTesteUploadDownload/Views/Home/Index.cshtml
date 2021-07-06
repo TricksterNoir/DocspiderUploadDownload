@@ -1,0 +1,28 @@
+﻿@model IEnumerable<DocspiderTesteUploadDownload.Models.Upload>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>Lista de Arquivos</h2>
+<label>@Html.ActionLink("Incluir","Incluir","Home")</label>
+<button>Incluir</button><button>Alterar</button><button>Excluir</button>
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Titulo)</th>
+        <th>@Html.DisplayNameFor(model => model.Descricao)</th>
+        <th>@Html.DisplayNameFor(model => model.Nome_Do_Arquivo)</th>
+        <th>@Html.DisplayNameFor(model => model.DataArquivo)</th>
+        <th>Configurações</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Titulo)</td>
+            <td>@Html.DisplayFor(modelItem => item.Descricao)</td>
+            <td>@Html.DisplayFor(modelItem => item.Nome_Do_Arquivo)</td>
+            <td>@Html.DisplayFor(modelItem => item.DataArquivo)</td>
+            <td><button>Alterar</button><button>Excluir</button></td>
+        </tr>
+    }
+</table>
