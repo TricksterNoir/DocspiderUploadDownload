@@ -28,6 +28,8 @@ namespace Presentation.DocspiderTesteUploadDownload
             var connectionString = Configuration.GetConnectionString("UploadConexao");
             services.AddTransient<UploadRepository>(map => new UploadRepository(connectionString));
             services.AddRazorPages();
+            //configurando o projeto para o padrão MVC
+            services.AddMvc(options => options.EnableEndpointRouting = false);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +57,16 @@ namespace Presentation.DocspiderTesteUploadDownload
             {
                 endpoints.MapRazorPages();
             });
+
+            //configurando o padrão de roteamento do projeto
+            app.UseMvc(
+            rotas =>
+            {
+                rotas.MapRoute(
+                name: "default",
+                template: "{controller=Home}/{action=Index}");
+            }
+            );
         }
     }
 }

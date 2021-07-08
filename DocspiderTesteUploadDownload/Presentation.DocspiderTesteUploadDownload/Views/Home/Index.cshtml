@@ -1,28 +1,68 @@
-﻿@*
+﻿@model List<Infra.Data.Entities.Upload>
 
-*@
 @{
+    Layout = "~/Views/Shared/Shared.cshtml";
 }
-List<Upload>
-    Upload = UploadServices.GetUpload();
-    <h2>Lista de Arquivos</h2>
-    <table class="table">
+
+<h2 class="d-flex justify-content-center m-4">Listagem de arquivos</h2>
+<button type="button" class="btn btn-primary mb-1 create" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fas fa-plus me-1"></i>Cadastrar</button>
+
+<div>
+    <strong>@TempData["Mensagem"]</strong>
+</div>
+<table class="table table-dark table-striped">
+    <thead>
         <tr>
-            <th>@Html.DisplayNameFor(model => model.Titulo)</th>
-            <th>@Html.DisplayNameFor(model => model.Descricao)</th>
-            <th>@Html.DisplayNameFor(model => model.Arquivo)</th>
-            <th>@Html.DisplayNameFor(model => model.Nome_Do_Arquivo)</th>
-            <th>@Html.DisplayNameFor(model => model.Data_Hora)</th>
-            <th></th>
+            <th class="text-white">Titulo</th>
+            <th class="text-white">Descricao</th>
+            <th class="text-white">Arquivo</th>
+            <th class="text-white">Nome Do Arquivo</th>
+            <th class="text-white">Data da Criação</th>
+            <th class="text-white"></th>
         </tr>
-        @foreach (var item in Model)
+    </thead>
+    <tbody>
+        @if (Model != null)
         {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => item.Titulo)</td>
-                <td>@Html.DisplayFor(modelItem => item.Descrucao)</td>
-                <td>@Html.DisplayFor(modelItem => item.Arquivo)</td>
-                <td>@Html.DisplayFor(modelItem => item.Nome_Do_Arquivo)</td>
-                <td>@Html.DisplayFor(modelItem => item.Data_Hora)</td>
-            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Titulo</td>
+                    <td>@item.Descricao</td>
+                    <td>@item.Arquivo</td>
+                    <td>@item.Nome_Do_Arquivo</td>
+                    <td>@item.DataCriacao</td>
+                    <td>
+                        <button class="btn btn-danger delete" data-id="@item.IdUpload"><i class="glyphicon glyphicon-trash"></i></button>
+                        <button class="btn btn-primary edit" data-id="@item.IdUpload"><i class="glyphicon glyphicon-edit"></i></button>
+                    </td>
+                    <td>
+                        <a href="/Cliente/Edicao" class="btn btn-primary btn-sm">
+                            Atualizar
+                        </a>
+                        <a href="/Cliente/Exclusao" class="btn btn-danger btn-sm">
+                            Excluir
+                        </a>
+                    </td>
+                </tr>
+
+            }
         }
-    </table>
+
+        <tr>
+            <td>teste</td>
+            <td>teste</td>
+            <td>teste</td>
+            <td>teste</td>
+            <td>teste</td>
+            <td>
+                <a href="/Cliente/Edicao" class="btn btn-primary btn-sm">
+                    Atualizar
+                </a>
+                <a href="/Cliente/Exclusao" class="btn btn-danger btn-sm">
+                    Excluir
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
