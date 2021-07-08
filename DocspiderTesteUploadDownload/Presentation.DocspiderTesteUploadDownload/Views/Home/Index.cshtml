@@ -3,3 +3,26 @@
 *@
 @{
 }
+List<Upload>
+    Upload = UploadServices.GetUpload();
+    <h2>Lista de Arquivos</h2>
+    <table class="table">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Titulo)</th>
+            <th>@Html.DisplayNameFor(model => model.Descricao)</th>
+            <th>@Html.DisplayNameFor(model => model.Arquivo)</th>
+            <th>@Html.DisplayNameFor(model => model.Nome_Do_Arquivo)</th>
+            <th>@Html.DisplayNameFor(model => model.Data_Hora)</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Titulo)</td>
+                <td>@Html.DisplayFor(modelItem => item.Descrucao)</td>
+                <td>@Html.DisplayFor(modelItem => item.Arquivo)</td>
+                <td>@Html.DisplayFor(modelItem => item.Nome_Do_Arquivo)</td>
+                <td>@Html.DisplayFor(modelItem => item.Data_Hora)</td>
+            </tr>
+        }
+    </table>
