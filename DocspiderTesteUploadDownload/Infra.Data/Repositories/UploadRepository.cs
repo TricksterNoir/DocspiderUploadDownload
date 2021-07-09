@@ -51,12 +51,22 @@ namespace Infra.Data.Repositories
 
         public List<Upload> Consultar()
         {
-            var query = "select * from Upload";
-
-            using (var connection = new SqlConnection(connectionString))
+            try
             {
-                return connection.Query<Upload>(query).ToList();
+                var query = "select * from Upload";
+
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    var teste = connection.Query<Upload>(query).ToList();
+                    return connection.Query<Upload>(query).ToList();
+                }
             }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+         
         }
 
 

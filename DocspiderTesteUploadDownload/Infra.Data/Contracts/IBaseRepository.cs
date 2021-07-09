@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Infra.Data.Contracts
 {
-    interface IBaseRepository<T> where T : class 
+    public interface IBaseRepository<T> where T : class 
     {
         void Inserir(T obj);
         void Atualizar(T obj);

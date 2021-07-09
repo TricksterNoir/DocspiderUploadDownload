@@ -1,1 +1,23 @@
-﻿
+﻿@model Infra.Data.Entities.Upload
+
+@{
+    Layout = "~/Views/Shared/Shared.cshtml";
+}
+
+<h1 class="d-flex justify-content-center m-4">Cadastro de Arquivo</h1>
+
+<form method="post">
+    <div asp-validation-summary="All"></div>
+    <input asp-for="Model.IdUpload" type="hidden" />
+    <div>
+        <label asp-for="Model.Titulo"></label>
+        <div>
+            <input asp-for="Model.Titulo" />
+            <span asp-validation-for="Model.Titulo"></span>
+        </div>
+    </div>
+    <div>
+        <button type="submit">Salvar</button>
+        <button type="reset">Cancelar</button>
+    </div>
+</form>

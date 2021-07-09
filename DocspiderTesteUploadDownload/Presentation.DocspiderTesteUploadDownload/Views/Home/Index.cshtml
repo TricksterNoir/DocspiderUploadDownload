@@ -1,8 +1,10 @@
-﻿@model List<Infra.Data.Entities.Upload>
-
-@{
+﻿@{
     Layout = "~/Views/Shared/Shared.cshtml";
 }
+
+@{
+    var upload = ViewData["Upload"] as List<Infra.Data.Entities.Upload>;
+ }
 
 <h2 class="d-flex justify-content-center m-4">Listagem de arquivos</h2>
 <button type="button" class="btn btn-primary mb-1 create" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fas fa-plus me-1"></i>Cadastrar</button>
@@ -22,9 +24,9 @@
         </tr>
     </thead>
     <tbody>
-        @if (Model != null)
+        @if (@upload != null)
         {
-            @foreach (var item in Model)
+            @foreach (var item in @upload)
             {
                 <tr>
                     <td>@item.Titulo</td>
@@ -33,14 +35,10 @@
                     <td>@item.Nome_Do_Arquivo</td>
                     <td>@item.DataCriacao</td>
                     <td>
-                        <button class="btn btn-danger delete" data-id="@item.IdUpload"><i class="glyphicon glyphicon-trash"></i></button>
-                        <button class="btn btn-primary edit" data-id="@item.IdUpload"><i class="glyphicon glyphicon-edit"></i></button>
-                    </td>
-                    <td>
                         <a href="/Cliente/Edicao" class="btn btn-primary btn-sm">
                             Atualizar
                         </a>
-                        <a href="/Cliente/Exclusao" class="btn btn-danger btn-sm">
+                        <a href="/Home/Excluir/@item.IdUpload" class="btn btn-danger btn-sm">
                             Excluir
                         </a>
                     </td>
@@ -49,20 +47,5 @@
             }
         }
 
-        <tr>
-            <td>teste</td>
-            <td>teste</td>
-            <td>teste</td>
-            <td>teste</td>
-            <td>teste</td>
-            <td>
-                <a href="/Cliente/Edicao" class="btn btn-primary btn-sm">
-                    Atualizar
-                </a>
-                <a href="/Cliente/Exclusao" class="btn btn-danger btn-sm">
-                    Excluir
-                </a>
-            </td>
-        </tr>
     </tbody>
 </table>

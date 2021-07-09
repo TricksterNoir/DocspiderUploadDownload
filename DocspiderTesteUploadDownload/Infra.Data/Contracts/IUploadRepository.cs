@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Infra.Data.Contracts
 {
-    interface IUploadRepository:IBaseRepository<Upload>
+    public interface IUploadRepository:IBaseRepository<Upload>
     {
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Presentation.DocspiderTesteUploadDownload.Models
 {
-    public class MUpload
+    public class UploadViewModel
     {
         public int Id_Upload { get; set; }
 

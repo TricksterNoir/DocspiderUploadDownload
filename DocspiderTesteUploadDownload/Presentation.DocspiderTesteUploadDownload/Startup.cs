@@ -1,3 +1,4 @@
+using Infra.Data.Contracts;
 using Infra.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,12 +25,14 @@ namespace Presentation.DocspiderTesteUploadDownload
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //capturar a string de conexão do banco de dados
-            var connectionString = Configuration.GetConnectionString("UploadConexao");
-            services.AddTransient<UploadRepository>(map => new UploadRepository(connectionString));
-            services.AddRazorPages();
             //configurando o projeto para o padrão MVC
             services.AddMvc(options => options.EnableEndpointRouting = false);
+
+            //capturar a string de conexão do banco de dados
+            var connectionString = Configuration.GetConnectionString("UploadConexao");
+            services.AddTransient<IUploadRepository>(map => new UploadRepository(connectionString));
+            services.AddRazorPages();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
