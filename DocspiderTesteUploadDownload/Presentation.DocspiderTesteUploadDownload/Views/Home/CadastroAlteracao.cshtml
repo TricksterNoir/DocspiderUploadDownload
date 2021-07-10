@@ -1,23 +1,42 @@
-﻿@model Infra.Data.Entities.Upload
+﻿@page "{id?}"
+@model Presentation.DocspiderTesteUploadDownload.Models.UploadViewModel
 
 @{
     Layout = "~/Views/Shared/Shared.cshtml";
 }
-
+@{ 
+    var upload = ViewBag.Upload;
+}
 <h1 class="d-flex justify-content-center m-4">Cadastro de Arquivo</h1>
 
-<form method="post">
+<form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="Index">
     <div asp-validation-summary="All"></div>
-    <input asp-for="Model.IdUpload" type="hidden" />
+    <input value="@upload.IdUpload" type="hidden" name="IdUpload" />
     <div>
         <label asp-for="Model.Titulo"></label>
         <div>
-            <input asp-for="Model.Titulo" />
-            <span asp-validation-for="Model.Titulo"></span>
+            <label>Titulo</label>
+            <input type="text" class="form-control mb-1" placeholder="Insira um titulo para o seu arquivo (Max 100 Caracteres)" name="Titulo" value="@upload.Titulo" />
+            <span>@Html.ValidationMessageFor(model => model.Titulo)</span>
+        </div>
+        <div>
+            <label>Arquivo</label>
+            <input type="file" class="form-control mb-1" placeholder="Selecione o arquivo que deseja fazer o upload"  name="Arquivo" value="@upload.Arquivo"/>
+            <span>@Html.ValidationMessageFor(model => model.Arquivo)</span>
+        </div>
+        <div>
+            <label>Nome do Arquivo</label>
+            <input type="text" class="form-control mb-1" placeholder="Selecione um nome para o seu arquivo" name="Nome_Do_Arquivo" value="@upload.Nome_Do_Arquivo"/>
+            <span>@Html.ValidationMessageFor(model => model.Nome_Do_Arquivo)</span>
         </div>
     </div>
-    <div>
-        <button type="submit">Salvar</button>
-        <button type="reset">Cancelar</button>
+    <div class="mb-3">
+        <label>Descrição</label>
+        <textarea class="form-control" placeholder="Insira uma descrição (Max 2000 caracteres)" name="Descricao">@upload.Descricao</textarea>
+        <span>@Html.ValidationMessageFor(model => model.Descricao)</span>
+    </div>
+    <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary me-2 btn-lg">Salvar</button>
+        <button type="reset" class="btn btn-primary ms-2 btn-lg">Cancelar</button>
     </div>
 </form>

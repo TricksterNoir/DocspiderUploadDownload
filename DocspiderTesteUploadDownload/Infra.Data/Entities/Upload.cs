@@ -9,8 +9,21 @@ namespace Infra.Data.Entities
         public int IdUpload { get; set; }
         public string Titulo { get; set; }
         public string Descricao { get; set; }
-        public byte Arquivo { get; set; }
+        public byte[] Arquivo { get; set; }
         public string Nome_Do_Arquivo { get; set; }
         public DateTime DataCriacao { get; set; }
+        public Upload(int IdUpload, string Titulo, string Descricao, byte[] Arquivo, string Nome_Do_Arquivo, DateTime DataCriacao)
+        {
+            this.IdUpload = IdUpload;
+            this.Titulo = Titulo;
+            this.Descricao = Descricao;
+            this.Arquivo = Arquivo;
+            this.Nome_Do_Arquivo = Nome_Do_Arquivo;
+            this.DataCriacao = DataCriacao;
+        }
+        public Upload()
+        {
+
+        }
     }
 }

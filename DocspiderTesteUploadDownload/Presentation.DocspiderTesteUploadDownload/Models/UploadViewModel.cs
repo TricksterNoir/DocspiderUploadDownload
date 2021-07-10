@@ -8,7 +8,7 @@ namespace Presentation.DocspiderTesteUploadDownload.Models
 {
     public class UploadViewModel
     {
-        public int Id_Upload { get; set; }
+        public int IdUpload { get; set; }
 
         [Required(ErrorMessage = "Por favor, preencha o Titulo!")]
         [MaxLength(100,ErrorMessage = "O campo Titulo deve conter no máximo 100 caracteres.")]
@@ -18,7 +18,7 @@ namespace Presentation.DocspiderTesteUploadDownload.Models
         public string Descricao { get; set; }
 
         [Required(ErrorMessage = "Por favor, selecione o Arquivo!")]
-        public byte Arquivo { get; set; }
+        public Microsoft.AspNetCore.Http.IFormFile Arquivo { get; set; }
 
         [Required(ErrorMessage = "Por favor, preencha o Nome Do Arquivo!")]
         public string Nome_Do_Arquivo { get; set; }

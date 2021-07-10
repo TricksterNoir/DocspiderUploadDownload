@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Infra.Data.Contracts
 {
@@ -8,8 +9,8 @@ namespace Infra.Data.Contracts
     {
         void Inserir(T obj);
         void Atualizar(T obj);
-        void Excluir(T obj);
-
+        void Excluir(int id);
+        Task<T> ConsultarPorId(int Id);
         List<T> Consultar();
     }
 }

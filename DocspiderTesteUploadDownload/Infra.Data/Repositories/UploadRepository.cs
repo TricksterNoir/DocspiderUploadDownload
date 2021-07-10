@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Infra.Data.Repositories
 {
@@ -21,8 +22,9 @@ namespace Infra.Data.Repositories
 
         public void Inserir(Upload obj)
         {
-            var query = "insert into Upload(IdUpload,Titulo,Descricao,Arquivo,Nome_Do_Arquivo,DataCriacao) "
-                    + "values(@IdUpload, @Titulo, @Descricao, @Arquivo, @Nome_Do_Arquivo, @DataCriacao)";
+            obj.DataCriacao = DateTime.Now;
+            var query = "insert into Upload(Titulo,Descricao,Arquivo,Nome_Do_Arquivo,DataCriacao) "
+                    + "values(@Titulo, @Descricao, @Arquivo, @Nome_Do_Arquivo, @DataCriacao)";
 
             using (var connection = new SqlConnection(connectionString))
             {
@@ -31,21 +33,22 @@ namespace Infra.Data.Repositories
         }
         public void Atualizar(Upload obj)
         {
-            var query = "update Upload(IdUpload,Titulo,Descricao,Arquivo,Nome_Do_Arquivo,DataCriacao)"
-                      + "where IdCliente = @IdUpload";
+            var query = "update Upload "
+                 + "set titulo = @Titulo, descricao = @Descricao, arquivo = @Arquivo, nome_do_arquivo = @Nome_Do_Arquivo "
+                 + "where IdUpload = @IdUpload";
 
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Execute(query, obj);
             }
         }
-        public void Excluir(Upload obj)
+        public void Excluir(int id)
         {
-            var query = "delete from Upload where IdUpload = @IdUpload";
+            var query = "delete from Upload where IdUpload = "+id;
 
             using (var connection = new SqlConnection(connectionString))
             {
-                connection.Execute(query, obj);
+                connection.Execute(query, id);
             }
         }
 
@@ -67,6 +70,26 @@ namespace Infra.Data.Repositories
                 throw;
             }
          
+        }
+
+        public async Task<Upload> ConsultarPorId(int Id)
+        {
+            try
+            {
+                var query = "select * from Upload where idupload = "+Id;
+
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    var teste = await connection.QueryFirstAsync<Upload>(query);
+                    return teste; //await (Upload)connection.QueryFirstAsync<Upload>(query);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
         }
 
 

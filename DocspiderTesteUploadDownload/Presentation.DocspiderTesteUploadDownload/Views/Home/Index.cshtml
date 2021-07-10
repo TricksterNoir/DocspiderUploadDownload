@@ -7,7 +7,7 @@
  }
 
 <h2 class="d-flex justify-content-center m-4">Listagem de arquivos</h2>
-<button type="button" class="btn btn-primary mb-1 create" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fas fa-plus me-1"></i>Cadastrar</button>
+<button type="button" onclick="window.location.href = '/Home/CadastroAlteracao'" class="btn btn-primary mb-1 create" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fas fa-plus me-1"></i>Cadastrar</button>
 
 <div>
     <strong>@TempData["Mensagem"]</strong>
@@ -35,10 +35,10 @@
                     <td>@item.Nome_Do_Arquivo</td>
                     <td>@item.DataCriacao</td>
                     <td>
-                        <a href="/Cliente/Edicao" class="btn btn-primary btn-sm">
+                        <a href="/Home/CadastroAlteracao?id=@item.IdUpload" class="btn btn-primary btn-sm">
                             Atualizar
                         </a>
-                        <a href="/Home/Excluir/@item.IdUpload" class="btn btn-danger btn-sm">
+                        <a href="/Home/Excluir?id=@item.IdUpload" class="btn btn-danger btn-sm">
                             Excluir
                         </a>
                     </td>
