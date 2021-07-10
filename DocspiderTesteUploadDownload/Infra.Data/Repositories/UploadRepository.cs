@@ -23,8 +23,9 @@ namespace Infra.Data.Repositories
         public void Inserir(Upload obj)
         {
             obj.DataCriacao = DateTime.Now;
+            var teste = Convert.ToBase64String(obj.Arquivo);
             var query = "insert into Upload(Titulo,Descricao,Arquivo,Nome_Do_Arquivo,DataCriacao) "
-                    + "values(@Titulo, @Descricao, @Arquivo, @Nome_Do_Arquivo, @DataCriacao)";
+                    + "values(@Titulo, @Descricao, "+teste+", @Nome_Do_Arquivo, @DataCriacao)";
 
             using (var connection = new SqlConnection(connectionString))
             {
