@@ -78,8 +78,9 @@ namespace Presentation.DocspiderTesteUploadDownload.Controllers
             {
                
                 string nomeArquivo = upload.Nome_Do_Arquivo;
+                var ext = Path.GetExtension(upload.Nome_Do_Arquivo);
 
-                if (Path.GetExtension(upload.Nome_Do_Arquivo) == null)
+                if (ext == "")
                 {
                     nomeArquivo = upload.Nome_Do_Arquivo + Path.GetExtension(upload.Arquivo.FileName);
                 }   
@@ -89,7 +90,7 @@ namespace Presentation.DocspiderTesteUploadDownload.Controllers
                 if (arquivo != null)
                 {
                     ViewBag.Upload = upload;
-                    ViewBag.Erro = "*Titulo ou nome do arquivo já cadastrado";
+                    ViewBag.Erro = "*Título ou nome do arquivo já cadastrado";
                     return View();
                 }
                 else

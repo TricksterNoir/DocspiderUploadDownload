@@ -28,11 +28,11 @@
             @foreach (var item in @upload)
             {
                 <tr>
-                    <td style=" max-width: 16vw; width: 70%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="@item.Titulo">@item.Titulo</td>
-                    <td style=" max-width: 16vw; width: 70%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="@item.Descricao">@item.Descricao</td>                 
-                    <td style=" max-width: 16vw; width: 70%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="@item.Nome_Do_Arquivo">@item.Nome_Do_Arquivo</td>
-                    <td style=" max-width: 16vw; width: 70%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="@item.DataCriacao">@item.DataCriacao</td>
-                    <td style=" max-width: 16vw; width: 70%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" >
+                    <td style=" max-width: 16vw; width: 30%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="@item.Titulo">@item.Titulo</td>
+                    <td style=" max-width: 16vw; width: 40%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="@item.Descricao">@item.Descricao</td>                 
+                    <td style=" max-width: 16vw; width: 30%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="@item.Nome_Do_Arquivo">@item.Nome_Do_Arquivo</td>
+                    <td style=" max-width: 16vw; width: 20%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="@item.DataCriacao">@item.DataCriacao</td>
+                    <td style=" max-width: 16vw; width: 10%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" >
                         <a href="/Home/CadastroAlteracao?id=@item.IdUpload" style="text-decoration:none">
                             <i class="fas fa-edit"></i>
                         </a>
