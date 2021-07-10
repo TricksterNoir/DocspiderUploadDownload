@@ -16,25 +16,28 @@
         <label asp-for="Model.Titulo"></label>
         <div>
             <label>Titulo</label>
-            <input type="text" class="form-control mb-1" placeholder="Insira um titulo para o seu arquivo (Max 100 Caracteres)" name="Titulo" value="@upload.Titulo" />
+            <input type="text" class="form-control mb-1" style="width:55%" placeholder="Insira um titulo para o seu arquivo (Max 100 Caracteres)" name="Titulo" value="@upload.Titulo" />
             <span>@Html.ValidationMessageFor(model => model.Titulo)</span>
         </div>
         <div>
             <label>Arquivo</label>
-            <input type="file" class="form-control mb-1" placeholder="Selecione o arquivo que deseja fazer o upload"  name="Arquivo" value="@upload.Arquivo"/>
+            <input type="file" class="form-control mb-1" style="width:55%" placeholder="Selecione o arquivo que deseja fazer o upload"  name="Arquivo" value="@upload.Arquivo"/>
             <span>@Html.ValidationMessageFor(model => model.Arquivo)</span>
         </div>
         <div>
             <label>Nome do Arquivo</label>
-            <input type="text" class="form-control mb-1" placeholder="Selecione um nome para o seu arquivo" name="Nome_Do_Arquivo" value="@upload.Nome_Do_Arquivo"/>
+            <input type="text" class="form-control mb-1" style="width:55%" placeholder="Selecione um nome para o seu arquivo" name="Nome_Do_Arquivo" value="@upload.Nome_Do_Arquivo"/>
             <span>@Html.ValidationMessageFor(model => model.Nome_Do_Arquivo)</span>
         </div>
     </div>
     <div class="mb-3">
         <label>Descrição</label>
-        <textarea class="form-control" placeholder="Insira uma descrição (Max 2000 caracteres)" name="Descricao">@upload.Descricao</textarea>
+        <textarea class="form-control" style="width:55%" placeholder="Insira uma descrição (Max 2000 caracteres)" name="Descricao">@upload.Descricao</textarea>
         <span>@Html.ValidationMessageFor(model => model.Descricao)</span>
     </div>
+
+    <img src="C:\Users\user\OneDrive\Área de Trabalho\DocspiderLogo.png" class="img-fluid"/>
+
     <div class="d-flex justify-content-center">
         <button type="submit" class="btn btn-primary me-2 btn-lg">Salvar</button>
         <button type="reset" class="btn btn-primary ms-2 btn-lg">Cancelar</button>
