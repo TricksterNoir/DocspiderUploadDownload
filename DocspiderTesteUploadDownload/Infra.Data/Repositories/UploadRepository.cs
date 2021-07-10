@@ -14,7 +14,6 @@ namespace Infra.Data.Repositories
     { 
         private readonly string connectionString;
 
-        //construtor para entrada de argumentos
         public UploadRepository(string connectionString)
         {
             this.connectionString = connectionString;
@@ -23,8 +22,8 @@ namespace Infra.Data.Repositories
         public void Inserir(Upload obj)
         {
             obj.DataCriacao = DateTime.Now;
-            var query = "insert into Upload(Titulo,Descricao,Arquivo,Nome_Do_Arquivo,DataCriacao) "
-                    + "values(@Titulo, @Descricao, @Arquivo, @Nome_Do_Arquivo, @DataCriacao)";
+            var query = "insert into Upload(Titulo,Descricao,Arquivo,ContentType,Nome_Do_Arquivo,DataCriacao) "
+                    + "values(@Titulo, @Descricao, @Arquivo,@ContentType, @Nome_Do_Arquivo, @DataCriacao)";
 
             using (var connection = new SqlConnection(connectionString))
             {
@@ -34,7 +33,7 @@ namespace Infra.Data.Repositories
         public void Atualizar(Upload obj)
         {
             var query = "update Upload "
-                 + "set titulo = @Titulo, descricao = @Descricao, arquivo = @Arquivo, nome_do_arquivo = @Nome_Do_Arquivo "
+                 + "set titulo = @Titulo, descricao = @Descricao, arquivo = @Arquivo, ContentType = @ContentType, nome_do_arquivo = @Nome_Do_Arquivo "
                  + "where IdUpload = @IdUpload";
 
             using (var connection = new SqlConnection(connectionString))
@@ -60,7 +59,6 @@ namespace Infra.Data.Repositories
 
                 using (var connection = new SqlConnection(connectionString))
                 {
-                    var teste = connection.Query<Upload>(query).ToList();
                     return connection.Query<Upload>(query).ToList();
                 }
             }
@@ -79,9 +77,31 @@ namespace Infra.Data.Repositories
                 var query = "select * from Upload where idupload = "+Id;
 
                 using (var connection = new SqlConnection(connectionString))
+                {                    
+                    return await connection.QueryFirstOrDefaultAsync<Upload>(query);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+        }
+
+        public async Task<Upload> ConsultarPorNomeArquivo(string titulo, string nome, int id)
+        {
+            try
+            {
+                var query = "select * from Upload where (titulo='" + titulo
+                            + "' or nome_do_arquivo='" + nome
+                            + "') and idUpload <>" + id;
+
+
+                using (var connection = new SqlConnection(connectionString))
                 {
-                    var teste = await connection.QueryFirstAsync<Upload>(query);
-                    return teste; //await (Upload)connection.QueryFirstAsync<Upload>(query);
+                    
+                    return await connection.QueryFirstOrDefaultAsync<Upload>(query);
                 }
             }
             catch (Exception ex)

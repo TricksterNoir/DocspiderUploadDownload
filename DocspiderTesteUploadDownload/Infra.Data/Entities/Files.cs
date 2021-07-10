@@ -6,9 +6,17 @@ namespace Infra.Data.Entities
 {
     public class Files
     {
-        public string Name { get; set; }
-        public string FileType { get; set; }
+        public string FileName { get; set; }
+        public string ContentType { get; set; }
         public byte[] DataFiles { get; set; }
-        public DateTime? CreatedOn { get; set; }
+
+        public Files(string FileName, string ContentType, byte[] DataFiles)
+        {
+            this.FileName = FileName;
+            this.ContentType = ContentType;
+            this.DataFiles = DataFiles;
+        }
     }
+
+   
 }

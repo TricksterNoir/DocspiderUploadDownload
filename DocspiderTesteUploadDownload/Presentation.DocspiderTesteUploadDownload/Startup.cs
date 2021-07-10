@@ -22,20 +22,16 @@ namespace Presentation.DocspiderTesteUploadDownload
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //configurando o projeto para o padrão MVC
             services.AddMvc(options => options.EnableEndpointRouting = false);
 
-            //capturar a string de conexão do banco de dados
             var connectionString = Configuration.GetConnectionString("UploadConexao");
             services.AddTransient<IUploadRepository>(map => new UploadRepository(connectionString));
             services.AddRazorPages();
 
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -44,8 +40,7 @@ namespace Presentation.DocspiderTesteUploadDownload
             }
             else
             {
-                app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseExceptionHandler("/Error");             
                 app.UseHsts();
             }
 
@@ -61,7 +56,6 @@ namespace Presentation.DocspiderTesteUploadDownload
                 endpoints.MapRazorPages();
             });
 
-            //configurando o padrão de roteamento do projeto
             app.UseMvc(
             rotas =>
             {

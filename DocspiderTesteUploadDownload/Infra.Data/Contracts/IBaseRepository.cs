@@ -12,5 +12,7 @@ namespace Infra.Data.Contracts
         void Excluir(int id);
         Task<T> ConsultarPorId(int Id);
         List<T> Consultar();
+
+        Task<T> ConsultarPorNomeArquivo(string titulo, string nome, int id);
     }
 }

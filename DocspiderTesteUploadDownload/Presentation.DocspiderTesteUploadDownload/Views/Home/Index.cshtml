@@ -16,8 +16,7 @@
     <thead>
         <tr>
             <th class="text-white">Titulo</th>
-            <th class="text-white">Descricao</th>
-            <th class="text-white">Arquivo</th>
+            <th class="text-white">Descrição</th>          
             <th class="text-white">Nome Do Arquivo</th>
             <th class="text-white">Data da Criação</th>
             <th class="text-white"></th>
@@ -29,18 +28,17 @@
             @foreach (var item in @upload)
             {
                 <tr>
-                    <td>@item.Titulo</td>
-                    <td>@item.Descricao</td>
-                    <td>@item.Arquivo</td>
-                    <td>@item.Nome_Do_Arquivo</td>
-                    <td>@item.DataCriacao</td>
-                    <td>
-                        <a href="/Home/CadastroAlteracao?id=@item.IdUpload" class="btn btn-primary btn-sm">
-                            Atualizar
+                    <td style=" max-width: 16vw; width: 70%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="@item.Titulo">@item.Titulo</td>
+                    <td style=" max-width: 16vw; width: 70%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="@item.Descricao">@item.Descricao</td>                 
+                    <td style=" max-width: 16vw; width: 70%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="@item.Nome_Do_Arquivo">@item.Nome_Do_Arquivo</td>
+                    <td style=" max-width: 16vw; width: 70%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="@item.DataCriacao">@item.DataCriacao</td>
+                    <td style=" max-width: 16vw; width: 70%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" >
+                        <a href="/Home/CadastroAlteracao?id=@item.IdUpload" style="text-decoration:none">
+                            <i class="fas fa-edit"></i>
                         </a>
-                        <a href="/Home/Excluir?id=@item.IdUpload" class="btn btn-danger btn-sm">
-                            Excluir
-                        </a>
+                        <a href='@Url.Action("Excluir","Home", new { id = item.IdUpload })'><i class="fas fa-trash"></i></a>
+
+                        <a href='@Url.Action("DownloadFile","Home", new { id = item.IdUpload })'><i class="fas fa-file-download"></i></a>
                     </td>
                 </tr>
 
